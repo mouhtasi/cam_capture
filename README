@@ -1,0 +1,17 @@
+This currently only works in Windows due to the use of the VideoCapture module.
+
+Dependencies: 
+	VideoCapture Module (http://videocapture.sourceforge.net/)
+	Python Image Library (http://www.pythonware.com/products/pil/)
+	optional: PSFTP, Pageant, PuTTYgen, and PuTTY for automatic uploading to a server. psftp.exe should be saved in the same folder as the script. (http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+
+This program takes a sequence of photos when motion is detected. It can save the photos to a local drive and can upload them to a remote computer. For increased stealth, rename the file extension to .pyw so that it does not open up a console window. To kill the program after running as .pyw, kill pythonw.exe in the process list, or use this script (save with .cmd extension):
+	:START
+	TASKKILL /F /IM "pythonw.exe"
+	
+For the script to be able to upload the photos to a remote computer, a saved PuTTY session must be present with the private SSH key loaded in Pageant. The public key must also be in the remote computer's authorized_keys file.
+Create an SSH key in PuTTYgen. Add the public key to the remote computer's authorized_keys file (~/.ssh/authorized_keys), and save the private key on your computer. In PuTTY, create and save a session that uses the private key to connect to the remote server ("cam" is the same of the session in the script). Start Pageant, then load the key.
+
+If you don't want to upload the files to a remote computer, you can just ignore these steps and the program should be able to run as-is. But to be cleaner and safer, remove the code pertaining to uploading.
+
+If there are multiple cameras connected, change number in "showVideoWindow=0".
